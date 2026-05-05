@@ -1,0 +1,38 @@
+
+
+
+
+@theme {
+
+    /*Coastal Sage*/
+
+    --color-main-50: #f9fbfa;
+    --color-main-100: #f3f6f5;
+    --color-main-200: #e5ebea;
+    --color-main-300: #d2dad8;
+    --color-main-400: #90a39f;
+    --color-main-500: #6c7f7c;
+    --color-main-600: #4c625c;
+    --color-main-700: #394f4a;
+    --color-main-800: #203630;
+    --color-main-900: #122623;
+    --color-main-950: #041110;
+
+    /*Olive Grove*/
+
+    --color-second-50: #f7f7ef;
+    --color-second-100: #eaebd9;
+    --color-second-200: #d7d8b7;
+    --color-second-300: #bfc08d;
+    --color-second-400: #aaab6a;
+    --color-second-500: #969654;
+    --color-second-600: #7b7944;
+    --color-second-700: #66633a;
+    --color-second-800: #514e32;
+    --color-second-900: #47442e;
+    --color-second-950: #272517;
+
+
+
+
+}

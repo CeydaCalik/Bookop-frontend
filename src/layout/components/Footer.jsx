@@ -1,0 +1,20 @@
+
+
+export const Footer = () => {
+    return (
+        <>
+        <footer className="bg-main-200 py-4 px-8 flex justify-between items-center">
+
+            <p className="text-main-900"> &copy;
+                BOOKOP - 2026 - Tous droits réservés
+            </p>
+
+            <div>
+                <a className="text-secondary-500 text-main-900 transition duration-100 hover:text-secondary-700 underline" href="">Conditions générales</a>
+            </div>
+
+
+        </footer>
+        </>
+    )
+}
