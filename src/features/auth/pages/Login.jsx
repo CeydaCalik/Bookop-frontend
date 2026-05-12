@@ -9,7 +9,7 @@ export const Login = () => {
         <>
         <section className="py-5 px-44 flex flex-col gap-4 items-start">
                    <h2 className="text-5xl text-center text-main-800">
-                        Connection
+                        Connexion
                     </h2>
                 </section>
                 

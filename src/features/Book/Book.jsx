@@ -34,7 +34,7 @@ export const Book = ({ book }) => {
                                             {item.volumeInfo.title}
                                         </h3>
 
-                                        <div className="flex flex-col gap-2 text-sm text-gray-700">
+                                        <div className="flex flex-col gap-2 text-sm text-main-700">
                                             <p><span className="badge">Maturité : </span>{maturity}</p>
                                             <p><span className="badge">Auteur : </span>{author}</p>
                                             <p><span className="badge">Pages : </span>{pages}</p>
