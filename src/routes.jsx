@@ -4,6 +4,8 @@ import { Home } from "./layout/pages/Home";
 import { Register } from './features/auth/pages/Register'
 import { Login } from './features/auth/pages/Login'
 import { BookPage } from "./features/Book/BookPage";
+import { Favorite } from "./features/Book/Favorite";
+import { Trend } from "./layout/pages/Trend";
 
 
 /**
@@ -26,6 +28,14 @@ export const routes = [
             {
                 path : "book/:id",
                 element : <BookPage />
+            },
+            {
+                path : "favorite",
+                element : <Favorite />
+            },
+            {
+                path : "trend",
+                element : <Trend />
             },
             {
                 path : "auth",

@@ -1,26 +1,40 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cors from "cors";
-import authRoutes from "./routes/auth.js";
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
 
-dotenv.config();
+const authRoutes = require('./routes/auth.route');
+
+const favoriteRoute = require('./routes/favoriteBook.route');
+
 
 const app = express();
-const PORT = process.env.PORT;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 
-// routes
-app.use("/api/auth", authRoutes);
+
+app.use('/api/favorites', favoriteRoute);
+
+
+app.use('/api/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connecté"))
-  .catch(err => console.log(err));
+    .then(() => console.log('MongoDB connecté'))
+    .catch(err => console.log(err));
 
- 
+
+app.get('/', (req, res) => {
+    res.send("API running");
+});
+
+
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    console.log(`Le serveur tourne sur le port ${PORT}`);
+    
+})

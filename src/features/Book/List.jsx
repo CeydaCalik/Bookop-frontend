@@ -5,14 +5,14 @@ import axios from "axios";
 
 export const List = () => {
 
-    
+
     const [search, setSearch] = useState("");
     const [bookData, setBookData] = useState([]);
     const searchBook = (evt) => {
         if (evt.key === "Enter") {
 
 
-            axios.get('https://www.googleapis.com/books/v1/volumes?q=' + search + '&key='+ import.meta.env.VITE_GOOGLE_API_KEY + '&maxResults=40')
+            axios.get('https://www.googleapis.com/books/v1/volumes?q=' + search + '&key=' + import.meta.env.VITE_GOOGLE_API_KEY + '&maxResults=40')
                 .then(res => setBookData(res.data.items))
                 .catch(err => console.log(err))
 
@@ -29,7 +29,7 @@ export const List = () => {
                 </div>
 
                 <div className="flex flex-row bg-main-300 rounded-lg px-1 py-1">
-                    <input className=" bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-main-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-main-400 hover:border-second-300 shadow-sm focus:shadow" placeholder="Type here..."
+                    <input className=" bg-transparent placeholder:text-slate-400 text-main-700 text-sm border border-main-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-main-400 hover:border-second-300 shadow-sm focus:shadow" placeholder="Type here..."
                         value={search} onChange={e => setSearch(e.target.value)}
                         onKeyDown={searchBook}
                     />
@@ -39,14 +39,14 @@ export const List = () => {
             </section>
 
             <section className="py-10 px-4">
-                {/* container de liste des livres */}
+
                 <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
 
                     {
-                        
-                        <Book book={bookData}/>
-                        
+
+                        <Book book={bookData} />
+
                     }
 
                 </div>
