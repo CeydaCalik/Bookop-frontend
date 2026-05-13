@@ -1,58 +1,69 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Link } from "react-router";
+
+
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const booksCache = {};
 
 export const Trend = () => {
 
     const swiperRef = useRef({});
 
     const categories = [
-        { title: "Tendance fiction", query: "bestseller fiction" },
-        { title: "Polar & Thriller", query: "crime thriller novels" },
-        { title: "Fantaisie", query: "fantasy epic" },
+
+        { title: "Fantaisie", query: "subject:fantasy" },
+        { title: "Mystère", query: "subject:mystery" },
+        { title: "Aventure", query: "subject:adventure" },
+
     ];
 
     const [bookCategory, setBookCategory] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const retry = async (url, retries = 3) => {
+    const fetched = useRef(false);
+
+    // ✅ 2. Retry ciblé uniquement sur le 429
+    const retry = async (url, retries = 3, delay = 1000) => {
         try {
             return await axios.get(url);
         } catch (err) {
-            if (retries > 0) {
-                return retry(url, retries - 1);
-            }
-            throw err;
+            if (retries <= 0 || err.response?.status !== 429) throw err;
+
+            await new Promise(res => setTimeout(res, delay));
+            return retry(url, retries - 1, delay * 2);
         }
     };
 
     useEffect(() => {
+
+        if (fetched.current) return;
+        fetched.current = true;
+
         const fetchBooks = async () => {
             try {
                 const results = [];
 
-                const delay = (ms) =>
-                    new Promise((res) => setTimeout(res, ms));
-
                 for (const category of categories) {
 
-                    const url = `https://www.googleapis.com/books/v1/volumes?q=${category.query}&maxResults=10`;
+                    // ✅ 3. Utilise le cache si dispo
+                    if (booksCache[category.query]) {
+                        results.push({ title: category.title, books: booksCache[category.query] });
+                        continue;
+                    }
 
+                    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(category.query)}&maxResults=10&key=${API_KEY}`;
                     const res = await retry(url);
 
-                    results.push({
-                        title: category.title,
-                        books: res.data.items || [],
-                    });
+                    booksCache[category.query] = res.data.items || [];
+                    results.push({ title: category.title, books: booksCache[category.query] });
 
-                    await delay(300);
+                    await new Promise(res => setTimeout(res, 500));
                 }
 
                 const formatted = {};
-
                 results.forEach((result) => {
                     formatted[result.title] = result.books;
                 });
@@ -67,92 +78,100 @@ export const Trend = () => {
         };
 
         fetchBooks();
-    }, []);
 
-    if (loading) {
-        return <div className="text-white p-10">Chargement...</div>;
-    }
+    }, []);
 
     return (
         <>
-            <section className="py-12 px-44 flex flex-col gap-4 items-start">
-                <h1 className="text-5xl text-main-900">
-                    Jette un coup d'oeil aux dernières tendances !
+            <section className="py-16 px-44 flex flex-col gap-2 items-start border-b border-main-200">
+                <p className="text-sm uppercase tracking-widest text-main-500 font-medium">Découverte</p>
+                <h1 className="text-5xl font-serif text-main-900">
+                    Dernières tendances
                 </h1>
             </section>
-
-            <section className="py-12 px-44 flex flex-col gap-10">
-
+    
+            <section className="py-16 px-44 flex flex-col gap-16">
                 {categories.map((category) => (
-                    <div key={category.title} className="relative">
-                        <div className="flex justify-between items-center mb-4">
-
-                            <h2 className="text-2xl font-bold mb-4 text-main-800">
+                    <div key={category.title}>
+    
+                      
+                        <div className="flex items-center gap-4 mb-8">
+                            <span className="w-8 h-px bg-main-400"></span>
+                            <h2 className="text-lg uppercase tracking-widest font-semibold text-main-700">
                                 {category.title}
                             </h2>
-
+                            <span className="flex-1 h-px bg-main-200"></span>
                         </div>
-
-                        
-                        <Swiper
-                            onSwiper={(swiper) => {
-                                swiperRef.current[category.title] = swiper
-                            }}
-                            spaceBetween={15}
-                            slidesPerView={"auto"}
-                        >
-                            <div className="flex flex-row place-content-between px-5 py-5  ">
-
-                                <button
-                                    onClick={() => swiperRef.current[category.title]?.slidePrev()}
-                                    className="bg-main-200 text-2xl font-bold shadow-xl px-3 py-1 rounded-lg hover:scale-105 transition cursor-pointer w-20 h-15"
-                                >
-                                    &#8592;
-                                </button>
-                                <button
-                                    onClick={() => swiperRef.current[category.title]?.slideNext()}
-                                    className="bg-main-200 text-2xl font-bold shadow-xl px-3 py-1 rounded-lg hover:scale-105 transition cursor-pointer w-20 h-15"
-                                >
-                                    &#8594;
-                                </button>
-                            </div>
-
-                            {bookCategory[category.title]?.map((book) => (
-                                <SwiperSlide
-                                    key={book.id}
-                                    style={{ width: "180px" }}
-                                >
-                                    <div className="rounded-2xl overflow-hidden bg-main-100 shadow-md hover:shadow-2xl transition duration-300 flex flex-col">
-
-                                        <img
-                                            src={
-                                                book.volumeInfo?.imageLinks?.thumbnail ||
-                                                "https://via.placeholder.com/180x260"
-                                            }
-                                            alt={book.volumeInfo?.title}
-                                            className="w-full h-56 object-cover hover:scale-105 transition duration-300"
-                                        />
-
-                                        <div className="p-4 flex flex-col gap-2">
-
-                                            <h3 className="text-sm font-bold text-main-900 line-clamp-2">
-                                                {book.volumeInfo?.title}
-                                            </h3>
-
-                                            <p className="text-xs text-gray-700">
-                                                {book.volumeInfo?.authors?.join(", ") ||
-                                                    "Auteur inconnu"}
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            ))}
-
-                        </Swiper>
+    
+    
+                        <div className="relative group">
+    
+    
+                            <button
+                                onClick={() => swiperRef.current[category.title]?.slidePrev()}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10
+                                           bg-white border border-main-200 shadow-lg
+                                           w-10 h-10 rounded-full flex items-center justify-center
+                                           text-main-700 hover:bg-main-100 hover:scale-110
+                                           transition duration-200 cursor-pointer
+                                           opacity-0 group-hover:opacity-100"
+                            >
+                                &#8592;
+                            </button>
+    
+                            <Swiper
+                                onSwiper={(swiper) => {
+                                    swiperRef.current[category.title] = swiper;
+                                }}
+                                spaceBetween={20}
+                                slidesPerView={"auto"}
+                            >
+                                {bookCategory[category.title]?.map((book) => (
+                                    <SwiperSlide key={book.id} style={{ width: "160px" }}>
+                                        <Link to={`/book/${book.id}`} state={{ book: book }}>
+                                            <div className="flex flex-col gap-3 group/card cursor-pointer">
+    
+    
+                                                <div className="rounded-lg overflow-hidden shadow-md group-hover/card:shadow-xl transition duration-300">
+                                                    <img
+                                                        src={book.volumeInfo?.imageLinks?.thumbnail || "https://via.placeholder.com/160x240"}
+                                                        alt={book.volumeInfo?.title}
+                                                        className="w-full h-52 object-cover group-hover/card:scale-105 transition duration-500"
+                                                    />
+                                                </div>
+    
+    
+                                                <div className="flex flex-col gap-1 px-1">
+                                                    <h3 className="text-sm font-semibold text-main-900 line-clamp-2 leading-snug">
+                                                        {book.volumeInfo?.title}
+                                                    </h3>
+                                                    <p className="text-xs text-main-500 italic line-clamp-1">
+                                                        {book.volumeInfo?.authors?.join(", ") || "Auteur inconnu"}
+                                                    </p>
+                                                </div>
+    
+                                            </div>
+                                        </Link>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+    
+    
+                            <button
+                                onClick={() => swiperRef.current[category.title]?.slideNext()}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10
+                                           bg-white border border-main-200 shadow-lg
+                                           w-10 h-10 rounded-full flex items-center justify-center
+                                           text-main-700 hover:bg-main-100 hover:scale-110
+                                           transition duration-200 cursor-pointer
+                                           opacity-0 group-hover:opacity-100"
+                            >
+                                &#8594;
+                            </button>
+    
+                        </div>
                     </div>
                 ))}
-
             </section>
         </>
     );
