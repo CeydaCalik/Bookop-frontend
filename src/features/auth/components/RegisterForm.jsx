@@ -38,9 +38,7 @@ export const RegisterForm = () => {
 
 
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <p className="text-sm uppercase tracking-widest text-main-500 font-medium">
-                            Création de compte
-                        </p>
+                        
                         <h1 className="text-4xl font-serif text-main-900">
                             Rejoignez <span className="italic">Bookop.</span>
                         </h1>

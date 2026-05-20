@@ -14,9 +14,21 @@ export const Trend = () => {
 
     const categories = [
 
-        { title: "Fantaisie", query: "subject:fantasy" },
-        { title: "Mystère", query: "subject:mystery" },
+        { title: "Fantasy", query: "subject:fantasy" },
+        { title: "Fantasy Sombre", query: "subject:fantasy subject:horror"},
+        { title: "Romance", query: "subject:romance" },
+        { title: "Romance Fantasy", query: "subject:fantasy subject:romance" },
+        { title: "Science-fiction", query: "subject:science fiction" },
+        {
+            title: "Dystopie",
+            query: "dystopian science fiction"
+          },
         { title: "Aventure", query: "subject:adventure" },
+        { title: "Fantasy Aventure", query: "subject:fantasy subject:adventure" },
+        { title: "Manga", query: "subject:manga" },
+        { title: "Thriller", query: "subject:thriller" },
+        { title: "Mystère", query: "subject:mystery" },
+        
 
     ];
 
@@ -48,7 +60,7 @@ export const Trend = () => {
 
                 for (const category of categories) {
 
-                    // ✅ 3. Utilise le cache si dispo
+                    
                     if (booksCache[category.query]) {
                         results.push({ title: category.title, books: booksCache[category.query] });
                         continue;

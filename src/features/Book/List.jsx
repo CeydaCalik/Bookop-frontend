@@ -51,7 +51,6 @@ export const List = () => {
     
                 {bookData.length === 0 ? (
                     <div className="flex flex-col items-center justify-center gap-4 text-center py-24">
-                        <p className="text-xl font-serif text-main-700">Qu'allez-vous découvrir ?</p>
                         <p className="text-sm text-main-400">Tapez un titre et appuyez sur Entrée</p>
                     </div>
                 ) : (

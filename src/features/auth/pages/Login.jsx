@@ -7,7 +7,10 @@ export const Login = () => {
 
     return (
         <>
-                   <section className="py-16 px-44 flex flex-col gap-2 items-start border-b border-main-200">                                                                                                                    
+                   <section className="py-16 px-44 flex flex-col gap-2 items-start border-b border-main-200">     
+                   <p className="text-sm uppercase tracking-widest text-main-500 font-medium">
+                   Connecte-toi 
+                        </p>                                                                                                               
                 <h1 className="text-5xl font-serif text-main-900">
                     Connexion
                 </h1>
