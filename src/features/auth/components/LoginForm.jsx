@@ -41,7 +41,7 @@ export const LoginForm = () => {
         <>
             <section className="min-h-fit px-5 py-10 flex items-center justify-center bg-main-50">
     
-                <div className="flex flex-col items-center gap-8 w-full max-w-md px-6">
+                <div className="flex flex-col items-center gap-8 w-2xl px-6">
     
     
                     <div className="flex flex-col items-center gap-2 text-center">

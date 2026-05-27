@@ -15,8 +15,8 @@ export const Favorite = () => {
         const fetchFavorites = async () => {
 
             try {
-
                 const res = await api.get("/favorites");
+                console.log(res.data);
                 const favoriteIds = res.data.favorites;
 
                 const booksData = [];
@@ -63,7 +63,7 @@ export const Favorite = () => {
     return (
         <section className="py-16 px-44 flex flex-col gap-2 min-h-screen">
     
-            {/* En-tête */}
+    
             <div className="flex flex-col gap-2 items-start border-b border-main-200 pb-10 mb-10">
                 <p className="text-sm uppercase tracking-widest text-main-500 font-medium">Collection personnelle</p>
                 <h1 className="text-5xl font-serif text-main-900">
@@ -87,7 +87,7 @@ export const Favorite = () => {
                             state={{ book: book }}
                             className="flex flex-col gap-3 group cursor-pointer"
                         >
-                            {/* Couverture */}
+                            
                             <div className="rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition duration-300">
                                 <img
                                     src={book.volumeInfo?.imageLinks?.thumbnail}
@@ -96,7 +96,7 @@ export const Favorite = () => {
                                 />
                             </div>
     
-                            {/* Infos */}
+    
                             <div className="flex flex-col gap-1 px-1">
                                 <h2 className="text-sm font-semibold text-main-900 line-clamp-2 leading-snug">
                                     {book.volumeInfo?.title}

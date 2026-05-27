@@ -6,6 +6,8 @@ import { Login } from './features/auth/pages/Login'
 import { BookPage } from "./features/Book/BookPage";
 import { Favorite } from "./features/Book/Favorite";
 import { Trend } from "./layout/pages/Trend";
+import { ProtectRoute } from "./features/auth/components/ProtectRoute";
+
 
 
 /**
@@ -14,39 +16,42 @@ import { Trend } from "./layout/pages/Trend";
 
 export const routes = [
     {
-        path : "/",
-        element : <App />,
-        children :  [
+        path: "/",
+        element: <App />,
+        children: [
             {
-                index : true,
-                element : <Home />
+                index: true,
+                element: <Home />
             },
             {
-                path : "list",
-                element : <List />
+                path: "list",
+                element: <List />
             },
             {
-                path : "book/:id",
-                element : <BookPage />
+                path: "book/:id",
+                element: <BookPage />
             },
             {
-                path : "favorite",
-                element : <Favorite />
+                path: "favorite",
+                element:
+                    <ProtectRoute>
+                        <Favorite />
+                    </ProtectRoute>
             },
             {
-                path : "trend",
-                element : <Trend />
+                path: "trend",
+                element: <Trend />
             },
             {
-                path : "auth",
-                children  : [
+                path: "auth",
+                children: [
                     {
-                        path : 'register',
-                        element : <Register />
+                        path: 'register',
+                        element: <Register />
                     },
                     {
-                        path : 'login',
-                        element : <Login />
+                        path: 'login',
+                        element: <Login />
                     }
                 ]
             }

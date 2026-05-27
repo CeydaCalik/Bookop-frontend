@@ -4,11 +4,7 @@ export const Home = () => {
 
     return (
         <>
-            <section className="flex flex-row py-50 px-30 place-content-evenly ">
-    
-    
-    
-    
+            <section className=" flex flex-row py-50 px-30 place-content-evenly ">
     
                 <div className="flex flex-col gap-4 ">
                     <h1 className="text-7xl font-serif text-main-900 leading-tight">
