@@ -11,7 +11,7 @@ export const CommentSection = ({ bookId }) => {
 
     const isLogged = localStorage.getItem("token");
 
-    
+
     useEffect(() => {
         const fetchReviews = async () => {
             try {
@@ -50,7 +50,7 @@ export const CommentSection = ({ bookId }) => {
     return (
         <div className="flex flex-col gap-6 py-8 px-6  ">
 
-            
+
             <div className="flex flex-col gap-2">
                 <p className="text-xs uppercase tracking-widest text-main-500 font-medium">Avis lecteurs</p>
                 <h2 className="text-2xl font-serif text-main-900">Commentaires</h2>
@@ -99,7 +99,7 @@ export const CommentSection = ({ bookId }) => {
                 </p>
             )}
 
-            {/* Liste des commentaires */}
+
             {loading ? (
                 <p className="text-sm text-main-400 text-center">Chargement...</p>
             ) : comments.length === 0 ? (

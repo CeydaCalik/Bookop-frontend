@@ -4,27 +4,28 @@ export const Home = () => {
 
     return (
         <>
-            <section className=" flex flex-row py-50 px-30 place-content-evenly ">
-    
-                <div className="flex flex-col gap-4 ">
-                    <h1 className="text-7xl font-serif text-main-900 leading-tight">
+            <section className="flex flex-col-reverse sm:flex-row py-10 sm:py-20 md:py-50 px-6 sm:px-12 md:px-30 items-center justify-between gap-10 w-full">
+
+                <div className="flex flex-col gap-4 items-center text-center sm:items-start sm:text-left flex-1">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-main-900 leading-tight">
                         Bienvenue sur <span className="italic text-main-500">Bookop.</span>
                     </h1>
-                    <h2 className="text-xl text-main-500 max-w-lg leading-relaxed">
+                    <h2 className="text-base sm:text-lg md:text-xl text-main-500 max-w-lg leading-relaxed">
                         Le site pour faire des découvertes littéraires et partager vos avis avec d'autres lecteurs.
                     </h2>
-    
-    
-                <button className="btn w-fit px-8 py-3 text-base tracking-wide">
-                    Cherche un nouveau livre
-                </button>
-    
+
+                    <a href="/list">
+
+                        <p className="btn w-fit px-8 py-3 text-base tracking-wide">
+                            Cherche un nouveau livre !
+                        </p>
+                    </a>
                 </div>
 
-                <div className="w-150 h-150 rounded-full inset-0 overflow-hidden">
-            <img className="w-full h-full object-cover " src="../../public/images/book-wall.jpg" alt="" />
-            
+                <div className="w-60 h-60 sm:w-36 sm:h-36 md:w-150 md:h-150 md:shrink-12 rounded-full overflow-hidden ">
+                    <img className="w-full h-full object-cover" src="../../public/images/book-wall.jpg" alt="Image de plein de livre" />
                 </div>
+
             </section>
         </>
     );

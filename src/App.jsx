@@ -6,12 +6,12 @@ function App() {
 
   return (
     <>
-    <Header/>
-    <main>
-    <Outlet />
+      <Header />
+      <main className="w-full">
+        <Outlet />
 
-    </main>
-    <Footer/>
+      </main>
+      <Footer />
     </>
   )
 }

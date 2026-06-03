@@ -37,28 +37,31 @@ export const Header = () => {
     );
 
     return (
-        <header className="bg-main-200">
+        <header className="bg-main-200 w-full">
 
-            {/* Barre principale */}
-            <div className="flex justify-between items-center py-4 px-8">
 
-                <p className="text-main-900 uppercase text-2xl font-bold">Bookop</p>
+            <div className="flex justify-between items-center py-4 px-8 ">
 
-                {/* Nav desktop — cachée en mobile */}
+                <a href="/">
+
+                    <p className="text-main-900 uppercase text-2xl font-bold">Bookop</p>
+
+                </a>
+
                 <nav className="hidden md:block">
                     <ul className="text-main-900 flex items-center gap-6 font-bold text-lg">
                         {navLinks}
                     </ul>
                 </nav>
 
-                {/* Hamburger — visible uniquement en mobile */}
+
                 <div className="md:hidden">
                     <Hamburger toggled={isOpen} toggle={setIsOpen} />
                 </div>
 
             </div>
 
-            {/* Menu mobile déroulant */}
+
             {isOpen && (
                 <nav className="md:hidden px-8 pb-4">
                     <ul className="text-main-900 flex flex-col gap-4 font-bold text-lg">

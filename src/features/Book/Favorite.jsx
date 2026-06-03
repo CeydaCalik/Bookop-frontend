@@ -61,25 +61,24 @@ export const Favorite = () => {
     }
 
     return (
-        <section className="py-16 px-44 flex flex-col gap-2 min-h-screen">
-    
-    
+        <section className="py-8 sm:py-12 md:py-16 px-6 sm:px-12 md:px-44 flex flex-col gap-2 min-h-screen">
+
             <div className="flex flex-col gap-2 items-start border-b border-main-200 pb-10 mb-10">
                 <p className="text-sm uppercase tracking-widest text-main-500 font-medium">Collection personnelle</p>
-                <h1 className="text-5xl font-serif text-main-900">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-main-900">
                     Mes favoris
                 </h1>
             </div>
-    
+
             {books.length === 0 ? (
                 <div className="flex flex-col items-center justify-center flex-1 gap-4 text-center py-24">
-                    <p className="text-6xl">📚</p>
-                    <p className="text-xl font-serif text-main-700">Votre bibliothèque est vide</p>
+                    <p className="text-5xl sm:text-6xl">📚</p>
+                    <p className="text-lg sm:text-xl font-serif text-main-700">Votre bibliothèque est vide</p>
                     <p className="text-sm text-main-400">Explorez les tendances et ajoutez vos premiers livres</p>
                 </div>
             ) : (
-                <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-    
+                <div className="grid gap-6 sm:gap-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+
                     {books.map((book) => (
                         <Link
                             key={book.id}
@@ -87,16 +86,15 @@ export const Favorite = () => {
                             state={{ book: book }}
                             className="flex flex-col gap-3 group cursor-pointer"
                         >
-                            
+
                             <div className="rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition duration-300">
                                 <img
                                     src={book.volumeInfo?.imageLinks?.thumbnail}
                                     alt={book.volumeInfo?.title}
-                                    className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                                    className="w-full h-44 sm:h-56 object-cover group-hover:scale-105 transition duration-500"
                                 />
                             </div>
-    
-    
+
                             <div className="flex flex-col gap-1 px-1">
                                 <h2 className="text-sm font-semibold text-main-900 line-clamp-2 leading-snug">
                                     {book.volumeInfo?.title}
@@ -107,10 +105,10 @@ export const Favorite = () => {
                             </div>
                         </Link>
                     ))}
-    
+
                 </div>
             )}
-    
+
         </section>
     );
 };

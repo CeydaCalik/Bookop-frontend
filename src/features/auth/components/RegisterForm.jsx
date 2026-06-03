@@ -39,10 +39,10 @@ export const RegisterForm = () => {
     return (
         <>
             <section className="min-h-fit px-5 py-10 flex items-center justify-center bg-main-50">
-                <div className="flex flex-col items-center gap-8 w-2xl px-6">
+                <div className="flex flex-col items-center gap-8 w-full sm:w-xl md:w-2xl px-4 sm:px-6">
 
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <h1 className="text-4xl font-serif text-main-900">
+                        <h1 className="text-3xl sm:text-4xl font-serif text-main-900">
                             Rejoignez <span className="italic">Bookop.</span>
                         </h1>
                     </div>
@@ -85,7 +85,6 @@ export const RegisterForm = () => {
                                 placeholder="••••••••••"
                             />
 
-                            
                             {password.length > 0 && (
                                 <ul className="flex flex-col gap-1 mt-2 px-2">
                                     {passwordRules.map(rule => (
