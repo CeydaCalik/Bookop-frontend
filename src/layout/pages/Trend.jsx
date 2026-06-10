@@ -18,13 +18,13 @@ export const Trend = () => {
     { title: "Fantasy Sombre", query: "subject:fantasy subject:horror" },
     { title: "Romance", query: "subject:romance" },
     { title: "Romance Fantasy", query: "subject:fantasy subject:romance" },
-    { title: "Science-fiction", query: "subject:science fiction" },
-    { title: "Dystopie", query: "dystopian science fiction" },
+    // { title: "Science-fiction", query: "subject:science fiction" },
     { title: "Aventure", query: "subject:adventure" },
     { title: "Fantasy Aventure", query: "subject:fantasy subject:adventure" },
     { title: "Manga", query: "subject:manga" },
+    { title: "Dystopie", query: "dystopian science fiction" },
     { title: "Thriller", query: "subject:thriller" },
-    { title: "Mystère", query: "subject:mystery" },
+    // { title: "Mystère", query: "subject:mystery" },
 
 
   ];

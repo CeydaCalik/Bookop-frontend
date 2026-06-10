@@ -9,9 +9,6 @@ export const Footer = () => {
                 BOOKOP - 2026 - Tous droits réservés
             </p>
 
-            <div>
-                <a className="text-secondary-500 text-main-900 transition duration-100 hover:text-secondary-700 underline" href="">Conditions générales</a>
-            </div>
 
 
         </footer>
