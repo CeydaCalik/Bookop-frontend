@@ -1,6 +1,7 @@
 ## Bookop
 
-<img width="1722" height="796" alt="bookop_ss" src="https://github.com/user-attachments/assets/397a81d8-9e62-491f-ad80-33b4e756964a" />
+<img width="1909" height="934" alt="image" src="https://github.com/user-attachments/assets/1b892269-0622-42bc-83b8-26b3be67acf9" />
+
 
 </br>
 
