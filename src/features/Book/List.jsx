@@ -39,7 +39,7 @@ export const List = () => {
                         onKeyDown={searchBook}
                     />
                     <button className="text-main-500 hover:text-main-800 transition">
-                        <img className="w-5 h-5 opacity-60 hover:opacity-100 transition" src="../../../public/images/search_svg.svg" />
+                        <img className="w-5 h-5 opacity-60 hover:opacity-100 transition" src="public/images/search_svg.svg" />
                     </button>
                 </div>
             </section>
