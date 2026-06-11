@@ -1,4 +1,4 @@
-
+import { Link } from "react-router";
 
 export const Home = () => {
 
@@ -16,12 +16,12 @@ export const Home = () => {
                         Le site pour faire des découvertes littéraires et partager vos avis avec d'autres lecteurs.
                     </h2>
 
-                    <a href="/trend">
+                    <Link to="/trend">
 
                         <p className="btn w-fit px-8 py-3 text-base tracking-wide">
                             Jette un coup d'œil !
                         </p>
-                    </a>
+                    </Link>
                 </div>
 
                 
