@@ -26,7 +26,7 @@ export const Home = () => {
 
                 
                 <div className="w-50 h-50 sm:w-36 sm:h-36 md:w-180 md:h-107 md:shrink-12 rounded-full overflow-hidden ">
-                    <img className="w-full h-full object-cover" src="public/images/book-wall.jpg" alt="Image de plein de livre" />
+                    <img className="w-full h-full object-cover" src="images/book-wall.jpg" alt="Image de plein de livre" />
                 </div> 
 
             </section>
